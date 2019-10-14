@@ -9,12 +9,15 @@
 <body>
     <h3>Presente</h3>
     <div class="div">
-        <label>Je</label><input type="text" id="je"><br><br>
-        <label>Tu</label><input type="text" id="tu"><br><br>
-        <label>Il/Elle/On</label><input type="text" id="il"><br><br>
-        <label>Nous</label><input type="text" id="nous"><br><br>
-        <label>Vous</label><input type="text" id="vous"><br><br>
-        <label>Ils/Elles</label><input type="text" id="ils">
+        <form action="/evaluar" method="POST">
+            <label>Je</label><input type="text" name="je"><br><br>
+            <label>Tu</label><input type="text" name="tu"><br><br>
+            <label>Il/Elle/On</label><input type="text" name="il"><br><br>
+            <label>Nous</label><input type="text" name="nous"><br><br>
+            <label>Vous</label><input type="text" name="vous"><br><br>
+            <label>Ils/Elles</label><input type="text" name="ils"><br><br>
+            <button type="submit">Revisar</button>   
+        </form>
     </div>
 </body>
 </html>
