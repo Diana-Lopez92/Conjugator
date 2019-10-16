@@ -24,27 +24,32 @@ def test():
     data = cursor.fetchall()
     cursor.close()
     print(data)
-    return render_template('presente.html')
+    # Se retorna la vista html y los datos de la BD por medio de la variable "verbes"
+    # HTML View is returned and the DB data through "verbes" variable
+    return render_template('presente.html', verbes = data)
 
 @app.route('/evaluar', methods=['POST'])
 def evaluar():
     if request.method == 'POST':
+        verbe = request.form['verbe']
         je = request.form['je']
         tu = request.form['tu']
         il = request.form['il']
         nous = request.form['nous']
         vous = request.form['vous']
         ils = request.form['ils']
-        print('Los valores del request son: \nje: ' + je + '\ntu: ' + tu + '\nil: ' + il + '\nnous: ' + nous + '\nvous: ' + vous + '\nils: ' + ils)
+        print('Los valores del request son: \nVerbo: ' + verbe + '\nje: ' + je + '\ntu: ' + tu + '\nil: ' + il + '\nnous: ' + nous + '\nvous: ' + vous + '\nils: ' + ils)
         
         # Se crea la conexión de MySQL / MySQL connection is created
         conn = mysql.connect()
         # Se crea un cursor / Acursor is created
         cursor = conn.cursor()
         # Se prepara la consulta / Query is prepared
-        cursor.execute('SELECT * FROM presente')
+        cursor.execute('SELECT * FROM presente WHERE verbo= %s', verbe)
         # Se ejecuta la consulta y se almacena / Query is executed and is storaged
         data = cursor.fetchall()
+        print("INFO: ")
+        print(data)
         # Se cierra la conexión / Connection is closed
         cursor.close()
 
@@ -77,7 +82,8 @@ def evaluar():
         # To access an element of a sublist it is used [][]
         print(data[0][1])
         ######################################################
-        return render_template('presente.html')
+        return redirect(url_for('test'))
+        #return render_template('presente.html')
 
 
 if __name__ == '__main__':

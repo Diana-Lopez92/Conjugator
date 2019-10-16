@@ -4,12 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Conjugateur Français</title>
 </head>
 <body>
-    <h3>Presente</h3>
+    <h3>Présent</h3>
+    <br><br>
     <div class="div">
         <form action="/evaluar" method="POST">
+            <label>Verbe</label>
+            <select name="verbe">
+                <option value="" disabled selected>Choisissez une verbe</option>
+                {% for verbe in verbes %} 
+                    <option value="{{ verbe.1 }}">{{ verbe.1 }}</option>                        
+                {% endfor %}
+            </select><br><br>
             <label>Je</label><input type="text" name="je"><br><br>
             <label>Tu</label><input type="text" name="tu"><br><br>
             <label>Il/Elle/On</label><input type="text" name="il"><br><br>
