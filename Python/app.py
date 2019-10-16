@@ -36,6 +36,47 @@ def evaluar():
         vous = request.form['vous']
         ils = request.form['ils']
         print('Los valores del request son: \nje: ' + je + '\ntu: ' + tu + '\nil: ' + il + '\nnous: ' + nous + '\nvous: ' + vous + '\nils: ' + ils)
+        
+        # Se crea la conexión de MySQL / MySQL connection is created
+        conn = mysql.connect()
+        # Se crea un cursor / Acursor is created
+        cursor = conn.cursor()
+        # Se prepara la consulta / Query is prepared
+        cursor.execute('SELECT * FROM presente')
+        # Se ejecuta la consulta y se almacena / Query is executed and is storaged
+        data = cursor.fetchall()
+        # Se cierra la conexión / Connection is closed
+        cursor.close()
+
+        # Se revisan las respuestas con los datos de la BD
+        # Answers are checked with the DB data
+        # Se crea variable para llevar el control de aciertos
+        # Variable is created to control the correct answers
+        check = 0
+        if je == data[0][2]:
+            check += 1
+        if tu == data[0][3]:
+            check += 1
+        if il == data[0][4]:
+            check += 1
+        if nous == data[0][5]:
+            check += 1
+        if vous == data[0][6]:
+            check += 1
+        if ils == data[0][7]:
+            check += 1
+
+        if check == 6:
+            print('Felicidades, respondiste correctamente todo!!!')
+        else:
+            print('Lo siento, tuviste ' + str(6-check) + ' errores. Sigue practicando.')
+        
+        #####################################################
+        print('DATA: ')
+        # Para acceder a un elemento de una sublista se utilizan [][] / 
+        # To access an element of a sublist it is used [][]
+        print(data[0][1])
+        ######################################################
         return render_template('presente.html')
 
 
