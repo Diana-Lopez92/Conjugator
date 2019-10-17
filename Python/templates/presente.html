@@ -1,31 +1,133 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Conjugateur Français</title>
-</head>
-<body>
-    <h3>Présent</h3>
-    <br><br>
-    <div class="div">
-        <form action="/evaluar" method="POST">
-            <label>Verbe</label>
-            <select name="verbe">
-                <option value="" disabled selected>Choisissez une verbe</option>
-                {% for verbe in verbes %} 
-                    <option value="{{ verbe.1 }}">{{ verbe.1 }}</option>                        
-                {% endfor %}
-            </select><br><br>
-            <label>Je</label><input type="text" name="je"><br><br>
-            <label>Tu</label><input type="text" name="tu"><br><br>
-            <label>Il/Elle/On</label><input type="text" name="il"><br><br>
-            <label>Nous</label><input type="text" name="nous"><br><br>
-            <label>Vous</label><input type="text" name="vous"><br><br>
-            <label>Ils/Elles</label><input type="text" name="ils"><br><br>
-            <button type="submit">Revisar</button>   
-        </form>
+<!-- Se importa la plantilla de html -->
+<!-- The HTML layout is imported -->
+{% extends 'layout.html' %}
+<!-- Se indica qué se desea mostrar en la plantilla -->
+<!-- It must be indicate what we want to show in the layout -->
+{% block body %}
+
+    <!-- Para recibir el mensaje de flash y mostrarlo por medio del motor de plantilla, es sintaxis de Jinja2-->
+    <!-- To Receive the Flash message and to show it through the layout engine Jinja2 -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                    <span>{{ message }}</span>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>    
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+
+    
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-center">Présent</h3>
+            <br><br>
+        </div>
     </div>
-</body>
-</html>
+
+    <form action="/evaluar" method="POST">
+        <div class="row">
+            <div class="col-lg-4 col-sm-5 mx-auto">
+                <h5 class="text-center">Verbe</h5>
+                <select name="verbe" class="custom-select" required title="S'il vous plaît choisir un verbe">
+                    <option value="" disabled selected>Choisissez une verbe</option>
+                    {% for verbe in verbes %} 
+                        <option value="{{ verbe.1 }}" {% if verbeList==verbe.1 %} selected="selected" {% endif %}>{{ verbe.1 }}</option>                        
+                    {% endfor %}
+                </select><br><br>
+            </div>                
+        </div>            
+            
+        <div class="row mt-5">
+            <div class="col-4"></div>
+            <div class="col-8">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-2">
+                        <label class="col-form-label">Je</label>
+                    </div>
+                    <div class="col-lg-3 col-sm-4">
+                        <input type="text" name="je" class="form-control {% if answer1==1 %}form-control is-valid{% elif answer1==0 %}form-control is-invalid{% endif %} " value="{{ je }}"><br><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-8">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-2">
+                        <label class="col-form-label">Tu</label>
+                    </div>
+                    <div class="col-lg-3 col-sm-4">
+                        <input type="text" name="tu" class="form-control {% if answer2==1 %}form-control is-valid{% elif answer2==0 %}form-control is-invalid{% endif %}" value="{{ tu }}"><br><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-8">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-2">
+                        <label class="col-form-label">Il/Elle/On</label>
+                    </div>
+                    <div class="col-lg-3 col-sm-4">
+                        <input type="text" name="il" class="form-control {% if answer3==1 %}form-control is-valid{% elif answer3==0 %}form-control is-invalid{% endif %}" value="{{ il }}"><br><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-8">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-2">
+                        <label class="col-form-label">Nous</label>
+                    </div>
+                    <div class="col-lg-3 col-sm-4">
+                        <input type="text" name="nous" class="form-control {% if answer4==1 %}form-control is-valid{% elif answer4==0 %}form-control is-invalid{% endif %}" value="{{ nous }}"><br><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-8">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-2">
+                        <label class="col-form-label">Vous</label>
+                    </div>
+                    <div class="col-lg-3 col-sm-4">
+                        <input type="text" name="vous" class="form-control {% if answer5==1 %}form-control is-valid{% elif answer5==0 %}form-control is-invalid{% endif %}" value="{{ vous }}"><br><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-8">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-2">
+                        <label class="col-form-label">Ils/Elles</label>
+                    </div>
+                    <div class="col-lg-3 col-sm-4">
+                        <input type="text" name="ils" class="form-control {% if answer6==1 %}form-control is-valid{% elif answer6==0 %}form-control is-invalid{% endif %}" value="{{ ils }}"><br><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center">
+                <button type="submit" class="btn btn-light">Vérifier</button>   
+            </div>
+        </div>
+    </form>
+
+
+
+    
+{% endblock %}
