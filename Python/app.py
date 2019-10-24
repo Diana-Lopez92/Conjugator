@@ -109,7 +109,7 @@ def evaluar():
             flash('Félicitations, vous avez conjugué correctement !!!', 'success')
         else:
             print('Lo siento, tuviste ' + str(6-check) + ' errores. Sigue practicando.')
-            flash('Je suis désolé que vous avez eu ' + str(6-check) + ' erreur(s). Continuez pratiquant.', 'warning')
+            flash('Je suis désolé, vous avez eu ' + str(6-check) + ' erreur(s). Continuez en pratiquant.', 'warning')
         #####################################################
         print('DATA: ')
         # Para acceder a un elemento de una sublista se utilizan [][] / 
