@@ -1,3 +1,7 @@
+# Installation of Flask and Flaskest.mysql
+# pip install Flask
+# pip install flask-mysql
+
 from flask import Flask, redirect, url_for, render_template, request, flash
 from flaskext.mysql import MySQL
 
@@ -7,7 +11,7 @@ app = Flask(__name__)
 # Configuraciones de MySQL/ MySQL Settings
 mysql = MySQL()
 app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = '12345678'
+app.config['MYSQL_DATABASE_PASSWORD'] = '12345678_'
 app.config['MYSQL_DATABASE_DB'] = 'frances'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 mysql.init_app(app)

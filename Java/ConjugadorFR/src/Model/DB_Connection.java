@@ -14,8 +14,8 @@ public class DB_Connection {
     
     String dataBase = "frances";
     String url = "jdbc:mysql://localhost/" + dataBase;
-    String user = "diana";
-    String pass = "87654321_";
+    String user = "root";
+    String pass = "12345678_";
     
     private Connection conn = null;
     
