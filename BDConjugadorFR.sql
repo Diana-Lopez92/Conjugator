@@ -5,5 +5,4 @@ create table presente(`idPresente` int not null auto_increment, `verbo` varchar(
 `Il/Elle/On` varchar(50), `Nous` varchar(50), `Vous` varchar(50), `Ils/Elles` varchar(50), primary key(`idPresente`)); 
 
 select * from presente;
-insert into presente(verbo, Je, Tu, Il/Elle/On, Nous, Vous, Ils/Elles) values ("être", "suis", "es", "est", "sommes", "êtes", "sont");
 INSERT INTO `presente` (`idPresente`, `verbo`, `Je`, `Tu`, `Il/Elle/On`, `Nous`, `Vous`, `Ils/Elles`) VALUES ('1', 'Être', 'suis', 'es', 'est', 'sommes', 'êtes', 'sont');
